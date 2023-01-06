@@ -65,3 +65,50 @@ while roll != 20 {
 }
 
 print("Critical hit!")
+
+
+var cats: Int = 0
+while cats < 10 {
+    cats += 1
+    print("I'm getting another cat.")
+    if cats == 4 {
+        print("Enough cats!")
+        cats = 10
+    }
+}
+
+var number: Int = 10
+while number > 0 {
+    number -= 2
+    if number % 2 == 0 {
+        print("\(number) is an even number.")
+    }
+}
+
+let filenames = ["me.jpg", "work.txt", "sophie.jpg", "logo.psd"]
+
+for filename in filenames {
+    if filename.hasSuffix(".jpg") == false {
+        continue
+    }
+    
+    print("Found picture: \(filename)")
+}
+
+
+let number1 = 4
+let number2 = 14
+
+var multiples = [Int]()
+
+for i in 1...100_000 {
+    if i.isMultiple(of: number1) && i.isMultiple(of: number2) {
+        multiples.append(i)
+        
+        if multiples.count == 10 {
+            break
+        }
+    }
+}
+
+print(multiples)
