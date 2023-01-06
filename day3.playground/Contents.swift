@@ -116,3 +116,29 @@ print(people1.contains("Samuel L Jackson"))
 print(people1.contains("Swift"))
 print(people1.count)
 print(people1.sorted())
+
+enum Weekday {
+    case monday
+    case tuesday
+    case wednesday
+    case thursday
+    case friday
+}
+
+
+var day = Weekday.monday
+day = Weekday.tuesday
+day = Weekday.friday
+
+enum Weekday1 {
+    case monday
+    ,tuesday
+    ,wednesday
+    ,thursday
+    ,friday
+}
+
+var day1 = Weekday1.monday
+day1 = .tuesday
+day1 = .friday
+print(Weekday1.monday)
