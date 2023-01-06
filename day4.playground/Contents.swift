@@ -27,3 +27,9 @@ let username: String
 
 username = "@twostraws"
 print(username)
+
+let array = ["my", "name", "is", "xhm", "my", "Name"]
+print(array.count)
+
+let arraySet = Set(array)
+print(arraySet.count)
