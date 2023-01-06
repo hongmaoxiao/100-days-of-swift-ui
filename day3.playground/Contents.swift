@@ -101,3 +101,18 @@ archEnemies["Batman"] = "The Joker"
 archEnemies["Superman"] = "Lex Luthor"
 archEnemies["Superman"] = "Penguin"
 print(archEnemies["Superman", default: "Unknown"])
+
+let people = Set(["Denzel Washington", "Tom Cruise", "Nicolas Cage", "Samuel L Jackson"])
+print(people)
+
+var people1 = Set<String>()
+people1.insert("Denzel Washington")
+people1.insert("Tom Cruise")
+people1.insert("Nicolas Cage")
+people1.insert("Samuel L Jackson")
+print(people1)
+
+print(people1.contains("Samuel L Jackson"))
+print(people1.contains("Swift"))
+print(people1.count)
+print(people1.sorted())
