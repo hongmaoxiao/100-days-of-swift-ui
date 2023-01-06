@@ -35,3 +35,7 @@ let number = 11
 let missionMessage = "Apollo \(number) landed on the moon"
 
 print("5 x 5 is \(5 * 5)")
+
+let celsius = 25.0
+let fahrenheit = celsius * 9 / 5 + 32
+print("celsius \(celsius) converts to fahrenheit is: \(fahrenheit)")
