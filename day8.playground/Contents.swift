@@ -60,3 +60,49 @@ do {
 } catch {
     print("There was an error.")
 }
+
+
+
+
+// Checkpoint 4
+
+func findRoot(_ number: Int) -> Int {
+    for i in 1...number {
+        if i * i == number {
+            return i
+        }
+    }
+    
+    return 0
+}
+
+enum rootError: Error {
+    case outOfBounds, noRoot
+}
+
+func computeSqrt(_ number: Int) throws -> Int {
+    if number < 1 || number > 10000 {
+        throw rootError.outOfBounds
+    }
+    
+    let root = findRoot(number)
+    
+    if root == 0 {
+        throw rootError.noRoot
+    }
+    
+    return root
+}
+
+do {
+    let result = try computeSqrt(10001)
+    print("return root: \(result)")
+} catch rootError.outOfBounds {
+    print("number should be >= 1 and <= 10000")
+} catch rootError.noRoot {
+    print("can not return the number root!")
+} catch {
+    print("unknown error")
+}
+
+
