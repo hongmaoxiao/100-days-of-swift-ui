@@ -113,3 +113,46 @@ func getUserTuple2() -> (String, String) {
 }
 let userTuple2 = getUserTuple2()
 print("Name: \(userTuple2.0) \(userTuple2.1)")
+
+// How to customize parameter labels
+func rollDice(slides: Int, count: Int) -> [Int] {
+    var rolls = [Int]()
+    
+    for _ in 1...count {
+        let roll = Int.random(in: 1...slides)
+        rolls.append(roll)
+    }
+    
+    return rolls
+}
+
+let rolls = rollDice(slides: 6, count: 4)
+print(rolls)
+
+func isUppercase(string: String) -> Bool {
+    string == string.uppercased()
+}
+
+let string = "HELLO, WORLD"
+print(isUppercase(string: string))
+
+func isUppercase1(_ string: String) -> Bool {
+    string == string.uppercased()
+}
+
+let string1 = "HELLO, WORLD"
+print(isUppercase1(string1))
+
+func printTimesTables1(number: Int) {
+    for i in 1...12 {
+        print("\(i) x \(number) is \(i * number)")
+    }
+}
+printTimesTables1(number: 5)
+
+func printTimesTables2(for number: Int) {
+    for i in 1...12 {
+        print("\(i) x \(number) is \(i * number)")
+    }
+}
+printTimesTables2(for: 5)
