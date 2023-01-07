@@ -64,3 +64,52 @@ func pythagoras1(a: Double, b: Double) -> Double {
     sqrt(a * a + b * b)
 }
 print(pythagoras1(a: 3, b: 4))
+
+
+
+// return multiple values from functions
+func getUser() -> [String] {
+    ["Taylor", "Swift"]
+}
+
+let user = getUser()
+print("Name: \(user[0]) \(user[1])")
+
+func getUserDict() -> [String: String] {
+    ["firstName": "Taylor", "lastName": "Swift"]
+}
+
+let userDict = getUserDict()
+print("Name: \(userDict["firstName", default: "Anonymous"]) \(userDict["lastName", default: "Anonymous"])")
+
+func getUserTuple() -> (firstName: String, lastName: String) {
+    (firstName: "Taylor", lastName: "Swift")
+}
+
+let userTuple = getUserTuple()
+print("Name: \(userTuple.firstName) \(userTuple.lastName)")
+
+let userTupleSep = getUserTuple()
+let firstName = userTupleSep.firstName
+let lastName = userTupleSep.lastName
+
+print("Name: \(firstName) \(lastName)")
+
+let (first, last) = getUserTuple()
+print("Name: \(first) \(last)")
+
+let (one, _) = getUserTuple()
+print("Name: \(one)")
+
+
+func getUserTuple1() -> (firstName: String, lastName: String) {
+    ("Taylor", "Swift")
+}
+let userTuple1 = getUserTuple1()
+print("Name: \(userTuple1.0) \(userTuple1.1)")
+
+func getUserTuple2() -> (String, String) {
+    ("Taylor", "Swift")
+}
+let userTuple2 = getUserTuple2()
+print("Name: \(userTuple2.0) \(userTuple2.1)")
