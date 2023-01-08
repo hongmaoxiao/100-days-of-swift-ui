@@ -56,3 +56,40 @@ struct Employee {
 }
 
 print(Employee.example.uername)
+
+
+// Checkpoint 6
+struct CarInfo {
+    let model = "BMW"
+    let seats = 4
+    private(set) var gear = 1
+    
+    mutating func addGear() -> Bool {
+        if gear >= 10 {
+            return false
+        }
+        gear += 1
+        return true
+    }
+    
+    mutating func descendGear() -> Bool {
+        if gear <= 1 {
+            return false
+        }
+        gear -= 1
+        return true
+    }
+}
+
+var car = CarInfo()
+print(car.gear)
+car.addGear()
+print(car.gear)
+car.addGear()
+print(car.gear)
+print(car.descendGear())
+print(car.gear)
+print(car.descendGear())
+print(car.gear)
+print(car.descendGear())
+print(car.gear)
