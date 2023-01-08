@@ -157,3 +157,36 @@ struct Player1 {
 }
 let player1 = Player1(name: "Megan R")
 print(player1.number)
+
+// Anonymous
+struct Employee4 {
+    var name: String
+    var yearsActive = 0
+    
+    init() {
+        self.name = "Anonymous"
+        print("Creating an anonymous employee...")
+    }
+}
+
+let roslin = Employee4()
+print(roslin.name)
+
+// can use memberwise initializer
+struct Employee5 {
+    var name: String
+    var yearsActive = 0
+}
+
+extension Employee5 {
+    init() {
+        self.name = "Anonymous"
+        print("Creating an anonymous employee...")
+    }
+}
+
+let roslin1 = Employee5(name: "Laura Roslin")
+print(roslin1.name)
+
+let anon = Employee5()
+print(anon.name)
