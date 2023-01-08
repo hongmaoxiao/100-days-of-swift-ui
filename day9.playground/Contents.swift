@@ -59,3 +59,40 @@ let captainFirstTeam1 = team.sorted(by: {
         return name1 < name2
 })
 print(captainFirstTeam1)
+
+let captainFirstTeam2 = team.sorted(by: {
+    name1, name2 in
+        if name1 == "Suzanne" {
+            return true
+        } else if name2 == "Suzanne" {
+            return false
+        }
+        
+        return name1 < name2
+})
+print(captainFirstTeam2)
+
+let captainFirstTeam3 = team.sorted(by: {
+        if $0 == "Suzanne" {
+            return true
+        } else if $1 == "Suzanne" {
+            return false
+        }
+        
+        return $0 < $1
+})
+print(captainFirstTeam3)
+
+let reverseTeam = team.sorted {
+    return $1 < $0
+}
+print(reverseTeam)
+
+let reverseTeam1 = team.sorted { $1 < $0 }
+print(reverseTeam1)
+
+let tOnly = team.filter({ $0.hasPrefix("T") })
+print(tOnly)
+
+let uppercaseTeam = team.map({ $0.uppercased() })
+print(uppercaseTeam)
