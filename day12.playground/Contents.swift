@@ -109,3 +109,35 @@ var user6 = user5.copy()
 user5.username = "Taylor"
 print(user5.username)
 print(user6.username)
+
+
+// How to create a deinitializer for a class
+class UserWithDel {
+    let id: Int
+    
+    init(id: Int) {
+        self.id = id
+        print("User \(id): I'm alive!")
+    }
+    
+    deinit {
+        print("User \(id): I'm dead!")
+    }
+}
+
+for i in 1...3 {
+    let user = UserWithDel(id: i)
+    print("User \(user.id): I'm in control!")
+}
+
+var users = [UserWithDel]()
+
+for i in 1...3 {
+    let user = UserWithDel(id: i)
+    print("User \(user.id): I'm in control!")
+    users.append(user)
+}
+
+print("Loop is finished!")
+users.removeAll()
+print("Array is clear!")
