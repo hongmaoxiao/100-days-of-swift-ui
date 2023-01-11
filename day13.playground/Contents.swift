@@ -130,3 +130,38 @@ extension Book {
 let lotr = Book(title: "Lord of the Rings", pageCount: 1178)
 print(lotr.title)
 print(lotr.readingHours)
+
+
+// How to create and use protocol extensions
+let guests = ["Mario", "Luigi", "Peach"]
+if !guests.isEmpty {
+    print("Guests count: \(guests.count)")
+}
+
+extension Collection {
+    var isNotEmpty: Bool {
+        isEmpty == false
+    }
+}
+
+if guests.isNotEmpty {
+    print("Guests count: \(guests.count)")
+}
+
+protocol Person {
+    var name: String { get }
+    func sayHello()
+}
+
+extension Person {
+    func sayHello() {
+        print("Hello, I'm \(name)")
+    }
+}
+
+struct Employee: Person {
+    let name: String
+}
+
+let taylor = Employee(name: "Taylor Swift")
+taylor.sayHello()
