@@ -165,3 +165,31 @@ struct Employee: Person {
 
 let taylor = Employee(name: "Taylor Swift")
 taylor.sayHello()
+
+
+// How to get the most from protocol extensions
+extension Numeric {
+    func squared() -> Self {
+        self * self
+    }
+}
+
+print(3.squared())
+print(3.14159.squared())
+
+struct User: Equatable, Comparable {
+    let name: String
+}
+
+func <(lhs: User, rhs: User) -> Bool {
+    lhs.name < rhs.name
+}
+
+let user1 = User(name: "Link")
+let user2 = User(name: "Zelda")
+print(user1 == user2)
+print(user1 != user2)
+print(user1 < user2)
+print(user1 <= user2)
+print(user1 > user2)
+print(user1 >= user2)
