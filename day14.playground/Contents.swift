@@ -1,5 +1,6 @@
 import Cocoa
 
+// How to handle missing data with optionals
 let opposites = ["Mario": "Wario", "Luigi": "Waluigi"]
 
 let peachOpposite = opposites["Peach"]
@@ -25,3 +26,18 @@ if let number = number {
     print(squre(number: number))
 }
 
+// How to unwrap optionals with guard
+func printSqure(of number: Int?) {
+    guard let number = number else {
+        print("Missing input")
+        return
+    }
+    
+    print("\(number) x \(number) is \(number * number)")
+}
+printSqure(of: nil)
+
+var myVar: Int? = 3
+if let unwrapped = myVar {
+    print("Run if myVar has a value inside")
+}
