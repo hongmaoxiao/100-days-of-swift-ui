@@ -42,6 +42,32 @@ if let unwrapped = myVar {
     print("Run if myVar has a value inside")
 }
 
+// How to unwrap optionals with nil coalescing
+let captains = [
+    "Enterprise": "Picard",
+    "Voyager": "Janeway",
+    "Defiant": "Sisko"
+]
+let new = captains["Serenity"] ?? "N/A"
+print(new)
+let new1 = captains["Serenity", default: "N/A"]
+print(new1)
+
+let tvShows = ["Archer", "Babylon 5", "Ted Lasso"]
+let favorite = tvShows.randomElement() ?? "None"
+print(favorite)
+
+struct Book0 {
+    let title: String
+    let author: String?
+}
+let book0 = Book0(title: "Beowulf", author: nil)
+let author0 = book0.author ?? "Anonymous"
+print(author0)
+
+let input = ""
+let num = Int(input) ?? 0
+print(num)
 
 // How to handle multiple optionals using optional chaining
 let names = ["Arya", "Bran", "Robb", "Sansa"]
@@ -55,3 +81,7 @@ struct Book {
 var book: Book? = nil
 let author = book?.author?.first?.uppercased() ?? "A"
 print(author)
+
+let names1 = ["Taylor", "Paul", "Adele"]
+let lengthOfLast = names1.last?.count
+print(lengthOfLast)
