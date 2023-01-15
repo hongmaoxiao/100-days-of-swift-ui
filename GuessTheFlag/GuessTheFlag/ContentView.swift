@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showingAlert = false
     var body: some View {
 //        Button("Delete selection", role: .destructive, action: execteDeleting)
 //        VStack {
@@ -21,14 +22,24 @@ struct ContentView: View {
 //            Button("Button 4", role: .destructive) {}
 //                .buttonStyle(.borderedProminent)
 //        }
-        Button {
-            print("Button was tapped!")
-        } label: {
-            //Image(systemName: "pencil")
-            Label("Edit", systemImage: "pencil")
-        }
+//        Button {
+//            print("Button was tapped!")
+//        } label: {
+//            //Image(systemName: "pencil")
+//            Label("Edit", systemImage: "pencil")
+//        }
         
 //        Image(systemName: "pencil")
+        
+        Button("Show Alert") {
+            showingAlert = true
+        }
+        .alert("Important message", isPresented: $showingAlert) {
+            Button("Delete", role: .destructive) {}
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("Please read this")
+        }
     }
     
     func execteDeleting() {
