@@ -19,6 +19,45 @@ struct CapsuleText: View {
     }
 }
 
+struct Title: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .foregroundColor(.white)
+            .padding()
+            .background(.blue)
+            .clipShape(RoundedRectangle(cornerRadius: 50))
+    }
+}
+
+struct Watermark: ViewModifier {
+    var text: String
+    
+    func body(content: Content) -> some View {
+        ZStack(alignment: .bottomTrailing) {
+            content
+            
+            Text(text)
+                .font(.caption)
+                .foregroundColor(.white)
+                .padding()
+                .background(.black)
+        }
+    }
+}
+
+extension View {
+    func titleStyle() -> some View {
+        modifier(Title())
+    }
+}
+
+extension View {
+    func watermarked(with text: String) -> some View {
+        modifier(Watermark(text: text))
+    }
+}
+
 struct ContentView: View {
     var motto1: some View {
         Text("Draco dormiens")
@@ -47,13 +86,17 @@ struct ContentView: View {
     @State private var useRedText = false
     
     var body: some View {
-        VStack {
-            CapsuleText(text: "First")
-                .foregroundColor(.white)
-            CapsuleText(text: "Second")
-                .foregroundColor(.yellow)
-        }
-        
+//        VStack {
+//            CapsuleText(text: "First")
+//                .foregroundColor(.white)
+//            CapsuleText(text: "Second")
+//                .foregroundColor(.yellow)
+//        }
+//        Text("Hello, world!")
+//            .titleStyle()
+        Color.blue
+            .frame(width: 300, height: 200)
+            .watermarked(with: "Hacking with swift")
     }
 }
 
