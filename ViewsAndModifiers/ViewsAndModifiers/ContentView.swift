@@ -7,6 +7,18 @@
 
 import SwiftUI
 
+struct CapsuleText: View {
+    var text: String
+    
+    var body: some View {
+        Text(text)
+            .font(.largeTitle)
+            .padding()
+            .background(.blue)
+            .clipShape(Capsule())
+    }
+}
+
 struct ContentView: View {
     var motto1: some View {
         Text("Draco dormiens")
@@ -35,13 +47,11 @@ struct ContentView: View {
     @State private var useRedText = false
     
     var body: some View {
-        HStack {
-//            motto1
-//                .foregroundColor(.red)
-//            motto2
-//                .foregroundColor(.blue)
-            spells
-            spells3
+        VStack {
+            CapsuleText(text: "First")
+                .foregroundColor(.white)
+            CapsuleText(text: "Second")
+                .foregroundColor(.yellow)
         }
         
     }
