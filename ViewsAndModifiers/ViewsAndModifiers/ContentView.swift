@@ -84,8 +84,14 @@ struct ContentView: View {
     }
     
     @State private var useRedText = false
+    @State private var selection = 0
+    
+    @State private var agreedToTerms = false
+    @State private var agreedToPrivacyPolicy = false
+    @State private var agreedToEmails = false
     
     var body: some View {
+        let binding = Binding(get: {selection}, set: {selection = $0})
 //        VStack {
 //            CapsuleText(text: "First")
 //                .foregroundColor(.white)
@@ -94,9 +100,33 @@ struct ContentView: View {
 //        }
 //        Text("Hello, world!")
 //            .titleStyle()
-        Color.blue
-            .frame(width: 300, height: 200)
-            .watermarked(with: "Hacking with swift")
+//        Color.blue
+//            .frame(width: 300, height: 200)
+//            .watermarked(with: "Hacking with swift")
+        
+        let agreeToAll = Binding<Bool>(get: {
+            agreedToTerms && agreedToPrivacyPolicy && agreedToEmails
+        }, set: {
+            agreedToTerms = $0
+            agreedToPrivacyPolicy = $0
+            agreedToEmails = $0
+        })
+        
+//        return VStack {
+//            Picker("Select a number", selection: binding) {
+//                ForEach(0..<3) {
+//                    Text("Item \($0)")
+//                }
+//            }
+//            .pickerStyle(.segmented)
+//        }
+        
+        return VStack {
+            Toggle("Agree to terms", isOn: $agreedToTerms)
+            Toggle("Agree to privacy policy", isOn: $agreedToPrivacyPolicy)
+            Toggle("Agree to receive shipping emails", isOn: $agreedToEmails)
+            Toggle("Agree to all", isOn: agreeToAll)
+        }
     }
 }
 
