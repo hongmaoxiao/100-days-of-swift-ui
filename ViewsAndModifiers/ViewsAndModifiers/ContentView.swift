@@ -58,6 +58,24 @@ extension View {
     }
 }
 
+struct GridStack<Content: View>: View {
+    let rows: Int
+    let columns: Int
+    @ViewBuilder let content: (Int, Int) -> Content
+    
+    var body: some View {
+        VStack {
+            ForEach(0..<rows, id: \.self) { row in
+                HStack {
+                    ForEach(0..<columns, id: \.self) { col in
+                        content(row, col)
+                    }
+                }
+            }
+        }
+    }
+}
+
 struct ContentView: View {
     var motto1: some View {
         Text("Draco dormiens")
@@ -121,11 +139,17 @@ struct ContentView: View {
 //            .pickerStyle(.segmented)
 //        }
         
-        return VStack {
-            Toggle("Agree to terms", isOn: $agreedToTerms)
-            Toggle("Agree to privacy policy", isOn: $agreedToPrivacyPolicy)
-            Toggle("Agree to receive shipping emails", isOn: $agreedToEmails)
-            Toggle("Agree to all", isOn: agreeToAll)
+//        return VStack {
+//            Toggle("Agree to terms", isOn: $agreedToTerms)
+//            Toggle("Agree to privacy policy", isOn: $agreedToPrivacyPolicy)
+//            Toggle("Agree to receive shipping emails", isOn: $agreedToEmails)
+//            Toggle("Agree to all", isOn: agreeToAll)
+//        }
+        
+        GridStack(rows: 4, columns: 4) {
+            row, col in
+                Image(systemName: "\(row * 4 + col).circle")
+                Text("R\(row) C\(col)")
         }
     }
 }
