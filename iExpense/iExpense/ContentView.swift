@@ -36,6 +36,7 @@ struct ContentView: View {
     @AppStorage("tapCount") private var tapCount = 0
     @State private var userstr = UserStr(firstName: "Taylor", lastName: "Swift")
     @StateObject var expenses = Expenses()
+    @State private var showingAddExpense = false
     
     var body: some View {
         //        VStack {
@@ -92,11 +93,13 @@ struct ContentView: View {
             .navigationTitle("iExpense")
             .toolbar {
                 Button {
-                    let expense = ExpenseItem(name: "Test", type: "Personal", amount: 5)
-                    expenses.items.append(expense)
+                    showingAddExpense = true
                 } label: {
                     Image(systemName: "plus")
                 }
+            }
+            .sheet(isPresented: $showingAddExpense) {
+                AddView(expenses: expenses)
             }
         }
     }
