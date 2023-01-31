@@ -32,6 +32,9 @@ struct Address: Codable {
 
 struct ContentView: View {
     var body: some View {
+        let layout = [
+            GridItem(.adaptive(minimum: 80, maximum: 120))
+        ]
 //        GeometryReader { geo in
 //            Image("Example")
 //                .resizable()
@@ -60,21 +63,29 @@ struct ContentView: View {
 //            }
 //        }
         
-        Button("Decode JSON") {
-            let input =  """
-            {
-                "name": "Taylor Swift",
-                "address": {
-                    "street": "555, Taylor Swift Avenue",
-                    "city": "Nashville"
+//        Button("Decode JSON") {
+//            let input =  """
+//            {
+//                "name": "Taylor Swift",
+//                "address": {
+//                    "street": "555, Taylor Swift Avenue",
+//                    "city": "Nashville"
+//                }
+//            }
+//            """
+//
+//            let data = Data(input.utf8)
+//            let decoder = JSONDecoder()
+//            if let user = try? decoder.decode(User.self, from: data) {
+//                print(user.address.street)
+//            }
+//        }
+        
+        ScrollView(.horizontal) {
+            LazyHGrid(rows: layout) {
+                ForEach(0..<1000) {
+                    Text("Item \($0)")
                 }
-            }
-            """
-            
-            let data = Data(input.utf8)
-            let decoder = JSONDecoder()
-            if let user = try? decoder.decode(User.self, from: data) {
-                print(user.address.street)
             }
         }
     }
