@@ -28,6 +28,7 @@ struct ContentView: View {
     @State private var showingSheet = false
     @State private var numbers = [Int]()
     @State private var currentNumber = 1
+    @AppStorage("tapCount") private var tapCount = 0
     
     var body: some View {
         //        VStack {
@@ -43,26 +44,28 @@ struct ContentView: View {
         //        .sheet(isPresented: $showingSheet) {
         //            SecondView(name: "@xhm")
         //        }
-        NavigationView {
-            VStack {
-                List {
-                    ForEach(numbers, id: \.self) {
-                        Text("Row \($0)")
-                            .background(.red)
-                            .foregroundColor(.gray)
-                    }
-                    .onDelete(perform: removeRows)
-                }
-                
-                Button("Add Number") {
-                    numbers.append(currentNumber)
-                    currentNumber += 1
-                }
-            }
-            .navigationTitle("OnDelete()")
-            .toolbar {
-                EditButton()
-            }
+//        NavigationView {
+//            VStack {
+//                List {
+//                    ForEach(numbers, id: \.self) {
+//                        Text("Row \($0)")
+//                    }
+//                    .onDelete(perform: removeRows)
+//                }
+//
+//                Button("Add Number") {
+//                    numbers.append(currentNumber)
+//                    currentNumber += 1
+//                }
+//            }
+//            .navigationTitle("OnDelete()")
+//            .toolbar {
+//                EditButton()
+//            }
+//        }
+        Button("Tap count: \(tapCount)") {
+            tapCount += 1
+//            UserDefaults.standard.set(tapCount, forKey: "Tap")
         }
     }
     
