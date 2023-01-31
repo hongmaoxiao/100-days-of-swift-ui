@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct AddView: View {
-    @ObservableObject var expenses: Expenses
+    @ObservedObject var expenses: Expenses
     
     @State private var name = ""
-    @State private var type = "Person"
+    @State private var type = "Personal"
     @State private var amount = 0.0
     
-    let types = ["Business", "Person"]
+    let types = ["Business", "Personal"]
     
     var body: some View {
         NavigationView {
@@ -29,7 +29,14 @@ struct AddView: View {
                 
                 TextField("Amount", value: $amount, format: .currency(code: "USD"))
                     .keyboardType(.decimalPad)
-            }.navigationTitle("Add new expense")
+            }
+            .navigationTitle("Add new expense")
+            .toolbar {
+                Button("Save") {
+                    let item = ExpenseItem(name: name, type: type, amount: amount)
+                    expenses.items.append(item)
+                }
+            }
         }
     }
 }
