@@ -29,13 +29,25 @@ struct ContentView: View {
 //                .frame(width: geo.size.width * 0.8)
 //                .frame(width: geo.size.width, height: geo.size.height)
 //        }
-        ScrollView(.horizontal) {
-            LazyHStack(spacing: 0) {
-                ForEach(0..<100) {
-                    CustomText("Item \($0)")
+//        ScrollView(.horizontal) {
+//            LazyHStack(spacing: 0) {
+//                ForEach(0..<100) {
+//                    CustomText("Item \($0)")
+//                }
+//            }
+//            .frame(maxWidth: .infinity)
+//        }
+        
+        NavigationView {
+            List(0..<100) { row in
+                NavigationLink {
+                    Text("Detail \(row)")
+                } label: {
+                    Text("Row \(row)")
+                    
                 }
+                .navigationTitle("SwiftUI")
             }
-            .frame(maxWidth: .infinity)
         }
     }
 }
