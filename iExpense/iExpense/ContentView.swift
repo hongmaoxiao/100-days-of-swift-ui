@@ -35,6 +35,7 @@ struct ContentView: View {
     @State private var currentNumber = 1
     @AppStorage("tapCount") private var tapCount = 0
     @State private var userstr = UserStr(firstName: "Taylor", lastName: "Swift")
+    @StateObject var expenses = Expenses()
     
     var body: some View {
         //        VStack {
@@ -73,16 +74,34 @@ struct ContentView: View {
 //            tapCount += 1
 //        }
         
-        Button("Save User") {
-            let encode = JSONEncoder()
-            
-            if let data = try? encode.encode(userstr) {
-                UserDefaults.standard.set(data, forKey: "UserData")
+//        Button("Save User") {
+//            let encode = JSONEncoder()
+//
+//            if let data = try? encode.encode(userstr) {
+//                UserDefaults.standard.set(data, forKey: "UserData")
+//            }
+//        }
+        
+        NavigationView {
+            List {
+                ForEach(expenses.items, id: \.name) { item in
+                    Text(item.name)
+                }
+                .onDelete(perform: removeItem)
+            }
+            .navigationTitle("iExpense")
+            .toolbar {
+                Button {
+                    let expense = ExpenseItem(name: "Test", type: "Personal", amount: 5)
+                    expenses.items.append(expense)
+                } label: {
+                    Image(systemName: "plus")
+                }
             }
         }
     }
     
-    func removeRows(at offsets: IndexSet) {
+    func removeItem(at offsets: IndexSet) {
         numbers.remove(atOffsets: offsets)
     }
 }
