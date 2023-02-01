@@ -31,7 +31,8 @@ struct Address: Codable {
 }
 
 struct ContentView: View {
-    let astronauts = Bundle.main.decode("astronauts.json")
+    let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
+    let missions: [Misson] = Bundle.main.decode("missions.json")
     
     var body: some View {
         let layout = [
