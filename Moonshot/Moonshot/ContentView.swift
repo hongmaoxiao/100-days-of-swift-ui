@@ -38,9 +38,9 @@ struct ContentView: View {
     ]
     
     var body: some View {
-        let layout = [
-            GridItem(.adaptive(minimum: 80, maximum: 120))
-        ]
+//        let layout = [
+//            GridItem(.adaptive(minimum: 80, maximum: 120))
+//        ]
 //        GeometryReader { geo in
 //            Image("Example")
 //                .resizable()
