@@ -115,12 +115,53 @@ struct Trapezoid: Shape {
     }
 }
 
+struct Checkerboard: Shape {
+    var rows: Int
+    var columns: Int
+    
+    var animatableData: AnimatablePair<Double, Double> {
+        get {
+            AnimatablePair(Double(rows), Double(columns))
+        }
+        
+        set {
+            rows = Int(newValue.first)
+            columns = Int(newValue.second)
+        }
+    }
+    
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        
+        let rowSize = rect.height / Double(rows)
+        let columnSize = rect.width / Double(columns)
+        
+        for row in 0..<rows {
+            for column in 0..<columns {
+                if (row + column).isMultiple(of: 2) {
+                    let rowStart = Double(column) * columnSize
+                    let columnStart = Double(row) * rowSize
+                    
+                    let rect = CGRect(x: rowStart, y: columnStart, width: columnSize, height: rowSize)
+                    
+                    path.addRect(rect)
+                }
+            }
+        }
+        
+        return path
+    }
+}
+
 struct ContentView: View {
     @State private var petalOffset = -20.0
     @State private var petalWidth = 100.0
     @State private var colorCycle = 0.0
     @State private var amount = 0.0
     @State private var insetAmount = 10.0
+    
+    @State private var rows = 4
+    @State private var columns = 4
     
     var body: some View {
 //        Path { path in
@@ -206,11 +247,19 @@ struct ContentView: View {
 //        .background(.black)
 //        .ignoresSafeArea()
         
-        Trapezoid(insetAmount: insetAmount)
-            .frame(width: 200, height: 100)
+//        Trapezoid(insetAmount: insetAmount)
+//            .frame(width: 200, height: 100)
+//            .onTapGesture {
+//                withAnimation {
+//                    insetAmount = Double.random(in: 10...90)
+//                }
+//            }
+        
+        Checkerboard(rows: rows, columns: columns)
             .onTapGesture {
-                withAnimation {
-                    insetAmount = Double.random(in: 10...90)
+                withAnimation(.linear(duration: 3)) {
+                    rows = 8
+                    columns = 16
                 }
             }
     }
