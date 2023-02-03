@@ -98,6 +98,7 @@ struct ContentView: View {
     @State private var petalOffset = -20.0
     @State private var petalWidth = 100.0
     @State private var colorCycle = 0.0
+    @State private var amount = 0.0
     
     var body: some View {
 //        Path { path in
@@ -142,12 +143,46 @@ struct ContentView: View {
 //            .strokeBorder(ImagePaint(image: Image(systemName: "plus"), scale: 0.1), lineWidth: 20)
 //            .frame(width: 300, height: 300)
         
+//        VStack {
+//            ColorCyclingCircle(amount: colorCycle)
+//                .frame(width: 300, height: 300)
+//
+//            Slider(value: $colorCycle)
+//        }
         VStack {
-            ColorCyclingCircle(amount: colorCycle)
-                .frame(width: 300, height: 300)
+//            ZStack {
+//                Circle()
+//                    .fill(.red)
+//                    .frame(width: 200 * amount)
+//                    .offset(x: -50, y: -80)
+//                    .blendMode(.screen)
+//
+//                Circle()
+//                    .fill(.green)
+//                    .frame(width: 200 * amount)
+//                    .offset(x: 50, y: -80)
+//                    .blendMode(.screen)
+//
+//                Circle()
+//                    .fill(.blue)
+//                    .frame(width: 200 * amount)
+//                    .blendMode(.screen)
+//            }
+//            .frame(width: 300, height: 300)
             
-            Slider(value: $colorCycle)
+            Image("grissom")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 200, height: 200)
+                .saturation(amount)
+                .blur(radius: (1 - amount) * 20)
+            
+            Slider(value: $amount)
+                .padding()
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(.black)
+        .ignoresSafeArea()
     }
 }
 
