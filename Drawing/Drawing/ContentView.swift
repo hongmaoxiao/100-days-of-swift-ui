@@ -89,18 +89,26 @@ struct ContentView: View {
 //        Arc(startAngle: .degrees(-90), endAngle: .degrees(90), clockwise: true)
 //            .strokeBorder(.red, lineWidth: 40)
         
-        VStack {
-            Flower(petalOffset: petalOffset, petalWidth: petalWidth)
-                .fill(.red, style: FillStyle(eoFill: true))
-            
-            Text("Offset")
-            Slider(value: $petalOffset, in: -40...40)
-                .padding([.horizontal, .bottom])
-            
-            Text("Width")
-            Slider(value: $petalWidth, in: 0...100)
-                .padding(.horizontal)
-        }
+//        VStack {
+//            Flower(petalOffset: petalOffset, petalWidth: petalWidth)
+//                .fill(.red, style: FillStyle(eoFill: true))
+//
+//            Text("Offset")
+//            Slider(value: $petalOffset, in: -40...40)
+//                .padding([.horizontal, .bottom])
+//
+//            Text("Width")
+//            Slider(value: $petalWidth, in: 0...100)
+//                .padding(.horizontal)
+//        }
+        
+        // Text("Hello, world!")
+            //.frame(width: 300, height: 300)
+//            .border(ImagePaint(image: Image(systemName: "plus"), scale: 0.2), width: 30)
+//            .border(ImagePaint(image: Image(systemName: "plus"), sourceRect: CGRect(x: 0, y: 0.25, width: 1, height: 0.5), scale: 0.1), width: 30)
+        Capsule()
+            .strokeBorder(ImagePaint(image: Image(systemName: "plus"), scale: 0.1), lineWidth: 20)
+            .frame(width: 300, height: 300)
     }
 }
 
