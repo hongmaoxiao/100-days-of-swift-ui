@@ -94,11 +94,33 @@ struct ColorCyclingCircle: View {
     }
 }
 
+struct Trapezoid: Shape {
+    var insetAmount: Double
+    
+    var animatableData: Double {
+        get { insetAmount }
+        set { insetAmount = newValue }
+    }
+    
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        
+        path.move(to: CGPoint(x: 0, y: rect.maxY))
+        path.addLine(to: CGPoint(x: insetAmount, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.maxX - insetAmount, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+        path.addLine(to: CGPoint(x: 0, y: rect.maxY))
+        
+        return path
+    }
+}
+
 struct ContentView: View {
     @State private var petalOffset = -20.0
     @State private var petalWidth = 100.0
     @State private var colorCycle = 0.0
     @State private var amount = 0.0
+    @State private var insetAmount = 10.0
     
     var body: some View {
 //        Path { path in
@@ -149,7 +171,7 @@ struct ContentView: View {
 //
 //            Slider(value: $colorCycle)
 //        }
-        VStack {
+//        VStack {
 //            ZStack {
 //                Circle()
 //                    .fill(.red)
@@ -170,19 +192,27 @@ struct ContentView: View {
 //            }
 //            .frame(width: 300, height: 300)
             
-            Image("grissom")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 200, height: 200)
-                .saturation(amount)
-                .blur(radius: (1 - amount) * 20)
-            
-            Slider(value: $amount)
-                .padding()
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.black)
-        .ignoresSafeArea()
+//            Image("grissom")
+//                .resizable()
+//                .scaledToFit()
+//                .frame(width: 200, height: 200)
+//                .saturation(amount)
+//                .blur(radius: (1 - amount) * 20)
+//
+//            Slider(value: $amount)
+//                .padding()
+//        }
+//        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//        .background(.black)
+//        .ignoresSafeArea()
+        
+        Trapezoid(insetAmount: insetAmount)
+            .frame(width: 200, height: 100)
+            .onTapGesture {
+                withAnimation {
+                    insetAmount = Double.random(in: 10...90)
+                }
+            }
     }
 }
 
