@@ -37,31 +37,52 @@ struct Result: Codable {
 
 struct ContentView: View {
     @State private var results = [Result]()
+    
+    @State private var username = ""
+    @State private var email = ""
     var body: some View {
-//        List(results, id: \.trackId) { item in
-//            VStack(alignment: .leading) {
-//                Text(item.trackName)
-//                    .font(.headline)
-//
-//                Text(item.collectionName)
-//            }
-//        }
-//        .task {
-//            await loadData()
-//        }
+        //        List(results, id: \.trackId) { item in
+        //            VStack(alignment: .leading) {
+        //                Text(item.trackName)
+        //                    .font(.headline)
+        //
+        //                Text(item.collectionName)
+        //            }
+        //        }
+        //        .task {
+        //            await loadData()
+        //        }
         
-        AsyncImage(url: URL(string: "https://hws.dev/img/logo.png")) { phase in
-            if let image = phase.image {
-                image
-                    .resizable()
-                    .scaledToFit()
-            } else if phase.error != nil {
-                Text("There was an error loading the image.")
-            } else {
-                ProgressView()
+        //        AsyncImage(url: URL(string: "https://hws.dev/img/logo.png")) { phase in
+        //            if let image = phase.image {
+        //                image
+        //                    .resizable()
+        //                    .scaledToFit()
+        //            } else if phase.error != nil {
+        //                Text("There was an error loading the image.")
+        //            } else {
+        //                ProgressView()
+        //            }
+        //        }
+        //        .frame(width: 200, height: 200)
+        
+        Form {
+            Section {
+                TextField("Username", text: $username)
+                TextField("Email", text: $email)
             }
+            
+            Section {
+                Button("Create account") {
+                    print("Creating account...")
+                }
+            }
+            .disabled(disableForm)
         }
-        .frame(width: 200, height: 200)
+    }
+    
+    var disableForm: Bool {
+        username.count < 5 || email.count < 5
     }
     
     func loadData() async {
